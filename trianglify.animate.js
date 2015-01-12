@@ -13,13 +13,11 @@ app.directive("ngTrianglifyAnimate", ["$interval", "$compile", function($interva
     return {
 		restrict:'A',
 		link: function($scope, $element, $attrs) {
-			var svg = new Snap("#"+$attrs.id);
-			
-			var polygons = svg.selectAll("polygon");
+		
+			var polygons = $element[0].getElementsByTagName('polygon');
 			var polys = [];
-			
 			for(var i=0; i<polygons.length; i++){
-				polygon = polygons[i].node;
+				polygon = polygons[i];
 				p = polygon.points;
 				polygon = angular.element(polygon);
 				polygon.attr("ng-class","{{point=points["+i+"]}}");
