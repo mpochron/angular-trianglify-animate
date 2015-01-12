@@ -12,13 +12,14 @@ Include the trianglify-animate JS after the angular.js
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.8/angular.min.js" type="text/javascript"></script>
 <script src="//machei.github.io/angular-trianglify-animate/trianglify.animate.js" type="text/javascript"></script>
 ```
+Using the plugin with the attribue of element svg works in a similar way. 
 
-### Using with element SVG
+#### Using with element SVG
 ```html
 <svg id="svg_example" ng-trianglify-animate></svg>;
 ```
 
-### Using with images SVG
+#### Using with images SVG
 ```html
 <img id="svg_example" src="../image.svg" ng-trianglify-animate />
 ```
