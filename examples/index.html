@@ -12,7 +12,7 @@
 	<script type="text/javascript" src="../trianglify.animate.js"></script>
 
 </head>
-<body ng-app="TriApp"> 
+<body ng-app="moduleTrianglifyAnimate"> 
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -21,19 +21,64 @@
 					Angular Trianglify Animate is tiny (2kb) plugin to add support for animate images SVG to your page.
 				</div>
 				<div>
+					<h1>Default options</h1>
+<pre>
+ng-speed = "1" // Animation speed  - number	
+ng-easing = "linear" // avaiable: 'in-out-cubic', 'in-out-quintic', 'in-quintic', 'in-quartic', 'in-cubic', 'in-quadratic', 'out-quintic', 'out-quartic', 'out-cubic', 'out-in-cubic', 'out-in-quartic', 'back-in-cubic', 'back-in-quartic', 'out-back-cubic', 'out-back-quartic', 'out-elastic-small', 'out-elastic-big'
+</pre>	
+					<h2>Experiments options</h2>
+<pre>
+ng-vector-x = ""
+ng-vector-y = ""
+ng-base-max = ""
+ng-base-min = ""
+ng-theta = ""
+</pre>
+				</div>
+
+				
+				<div>
 					<h2>Examples</h2>
 					<div style="text-align:center;">
+						<pre>&lt;img width="200" src="./images/js-logo.svg" alt="" ng-trianglify-animate/&gt;</pre>
 						<img width="200" src="./images/js-logo.svg" alt="" ng-trianglify-animate/>
-					
+						
+						<hr/>
+						
+						<pre>&lt;img width="200" src="./images/js-logo.svg" alt="" ng-trianglify-animate ng-speed="2"/&gt;</pre>
+						<img width="400" src="./images/web-trifecta_html5_css3_js-strict.svg" alt="" ng-trianglify-animate ng-speed="4"/>
 					</div>
 					<h2>Browser Support</h2>
+					
+					<div class="browser">
+						<table cellpadding="0" cellspacing="0" width="100%">
+							<tbody>
+								<tr colspan="5">
+									<td><img src="./images/chrome.svg" width="32" height="32" alt="chrome"></td>
+									<td><img src="./images/firefox.svg" width="32" height="32" alt="firefox"></td>
+									<td><img src="./images/ie.svg" width="32" height="32" alt="ie"></td>
+									<td><img src="./images/opera.svg" width="32" height="32" alt="opera" ></td>
+									<td><img src="./images/safari.svg" width="32" height="32" alt="safari"></td>
+								</tr>
+								<tr>
+									<td><span>7+</span></td>
+									<td><span>3.6+ (Gecko 1.9.2+)</span></td>
+									<td><span>10+</span></td>
+									<td><span>12.02+</span></td>
+									<td><span>6.0.2+</span></td>
+								</tr>					
+							</tbody>
+						</table>
+					</div>
 				
 				</div>
 				<div>
 					<h1>License</h1>
+					<span>Released under the <a href="http://www.opensource.org/licenses/MIT">MIT license</a>.</span>
 				</div>
 			</div>
 		</div>
 	</div>
+	<br/><br/><br/>
 </body>
 </html>
