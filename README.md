@@ -12,6 +12,17 @@ Include the trianglify-animate JS after the angular.js
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.8/angular.min.js" type="text/javascript"></script>
 <script src="//machei.github.io/angular-trianglify-animate/trianglify.animate.js" type="text/javascript"></script>
 ```
+
+1#Way: The ng-app directive initializes a module 'moduleTrianglifyAnimate' as the main module of an Angular application to your application: 
+
+```html
+<body ng-app="moduleTrianglifyAnimate">
+```
+2#Way: Add the Trianglify Animate module as a dependency to your application module:
+```html
+angular.module('yourApp', ['moduleTrianglifyAnimate'])
+```
+
 Using the plugin with the attribue of element svg works in a similar way. 
 
 #### Using with element SVG
@@ -23,6 +34,12 @@ Using the plugin with the attribue of element svg works in a similar way.
 ```html
 <img id="svg_example" src="../image.svg" ng-trianglify-animate />
 ```
+## Options
+
+### Default Options
+
+The following are the default options set by the plugin Angular Trianglify Animate:
+```html
 
 ## License
 Released under the [MIT license](http://www.opensource.org/licenses/MIT).
