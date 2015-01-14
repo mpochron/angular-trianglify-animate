@@ -19,7 +19,7 @@ Include the trianglify-animate JS after the angular.js
 <body ng-app="moduleTrianglifyAnimate">
 ```
 2#Way: Add the Trianglify Animate module as a dependency to your application module:
-```html
+```js
 angular.module('yourApp', ['moduleTrianglifyAnimate'])
 ```
 
@@ -39,7 +39,21 @@ Using the plugin with the attribue of element svg works in a similar way.
 ### Default Options
 
 The following are the default options set by the plugin Angular Trianglify Animate:
-```html
+
+Option | Default Value | Type | Description
+- | - | - | -
+speed | 1 | number | -
+easing | 'linear' | string | -
+vector-x | 0 | number | -
+vector-y | 5 | number | -
+base-max | 0 | number | -
+base-min | 500 | number | -
+thesa | 0.4 | number | -
+
+## Todolist
+
++ add more support for other symbol : circle, rect, ellipse, line, polyline
+
 
 ## License
 Released under the [MIT license](http://www.opensource.org/licenses/MIT).
