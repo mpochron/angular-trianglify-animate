@@ -61,7 +61,7 @@ angular.module('moduleTrianglifyAnimate', [])
 			
 			// Attrs			
 			angular.forEach(['speed', 'vectorX', 'vectorY', 'baseMax', 'baseMin', 'theta'], function( key, index ) {
-				$scope[key] = angular.isDefined($attrs[key]) ? (index < 6 ? $interpolate($attrs[key])($scope.$parent) : $scope.$parent.$eval($attrs[key])) : configTrianglifyAnimate[key];
+				$scope[key] = angular.isDefined($attrs[key]) ? (index < 6 ? $attrs[key] : $scope.$parent.$eval($attrs[key])) : configTrianglifyAnimate[key];
 			});
 
 			// Init Shapes
