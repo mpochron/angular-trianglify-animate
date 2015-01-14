@@ -41,7 +41,7 @@ Using the plugin with the attribue of element svg works in a similar way.
 The following are the default options set by the plugin Angular Trianglify Animate:
 
 Option | Default Value | Type | Description
-- | - | - | -
+--- | --- | --- | ---
 speed | 1 | number | -
 easing | 'linear' | string | -
 vector-x | 0 | number | -
@@ -53,7 +53,6 @@ thesa | 0.4 | number | -
 ## Todolist
 
 + add more support for other symbol : circle, rect, ellipse, line, polyline
-
 
 ## License
 Released under the [MIT license](http://www.opensource.org/licenses/MIT).
