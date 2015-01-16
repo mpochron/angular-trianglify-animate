@@ -52,7 +52,9 @@ thesa | 0.4 | number | -
 
 ## Todolist
 
-+ add more support for other symbol : circle, rect, ellipse, line, polyline
++ add more support for other symbol/shapes : circle, rect, ellipse, line, polyline
++ add support for attributes vector-x and vector-y
++ add support for animating with using a easing
 
 ## License
 Released under the [MIT license](http://www.opensource.org/licenses/MIT).
