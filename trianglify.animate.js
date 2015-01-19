@@ -31,18 +31,16 @@ angular.module('moduleTrianglifyAnimate', [])
 				var $e = $element[0] , $p = $element[0].parentNode;
 				var xhr = new XMLHttpRequest();
 				xhr.open("GET", $e.src, false);
-				xhr.responseType = "xml";
-				xhr.onload = response;
-		
+				xhr.responseType = "xml";		
 				function response(e){
 					var parser, xmlDoc;
 					if (window.XMLHttpRequest){ // Chorme, Firefox, Opera
 						parser=new DOMParser();
-						xmlDoc = parser.parseFromString(e.srcElement.response,"text/xml");
+						xmlDoc = parser.parseFromString(e.target.response,"text/xml");
 					}else{ // IE
 						xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
 						xmlDoc.async=false;
-						xmlDoc.loadXML(e.srcElement.response); 
+						xmlDoc.loadXML(e.target.response); 
 					}
 
 					svg = xmlDoc.getElementsByTagName("svg")[0];
@@ -55,6 +53,7 @@ angular.module('moduleTrianglifyAnimate', [])
 					$compile(svg)($scope);
 					$element = svg;
 				}
+				xhr.onload = response; // error on firefox
 				xhr.send();
 				return true;
 			}
@@ -68,7 +67,14 @@ angular.module('moduleTrianglifyAnimate', [])
 			var polygons = $element[0].getElementsByTagName('polygon');
 			var polys = [];
 			for(var i=0; i<polygons.length; i++){
+				// Chrome&Firefox&Opera works except IE 11: 
 				polys[i] = polygons[i].points;
+				// For IE:
+				//var d = polygons[i].getAttribute('points').split(' ');
+				//for(var q=0; q<d.length; q++){
+				//	var point = d[q].split(',')
+				//	polys[i] = {x:point[0], y:point[1]};
+				//}
 			}
 			
 			var el_paths = $element[0].getElementsByTagName('path');
@@ -85,9 +91,11 @@ angular.module('moduleTrianglifyAnimate', [])
 			var animate = function(){
 			
 				// polygons
+				// IE11 : F12 tools do not currently support extensive Scalable Vector Graphics (SVG) debugging, but several console messages are displayed to help debug SVG code.
+				
 				for(var i = 0; i < $scope.polys.length; i++) {
 					$poly = $scope.polys[i];
-					for(var q=0; q < $poly.length; q++){
+					for(var q=0; q < $poly.length; q++){ // .numberOfItems
 						$poly[q].y = $poly[q].y + Math.sin($scope.theta + scale($poly[q].x, 0, 500, 0, 2 * Math.PI)) * 0.5;
 					}
 				}
