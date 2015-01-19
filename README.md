@@ -55,6 +55,8 @@ thesa | 0.4 | number | -
 + add more support for other symbol/shapes : circle, rect, ellipse, line, polyline
 + add support for attributes vector-x and vector-y
 + add support for animating with using a easing
++ add browser support for IE 11 (bug: SVGPointList incorrectly based on contructor, cant get access to location of point)
+
 
 ## License
 Released under the [MIT license](http://www.opensource.org/licenses/MIT).
