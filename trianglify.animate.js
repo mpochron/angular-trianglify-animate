@@ -63,56 +63,88 @@ angular.module('moduleTrianglifyAnimate', [])
 				$scope[key] = angular.isDefined($attrs[key]) ? (index < 6 ? $attrs[key] : $scope.$parent.$eval($attrs[key])) : configTrianglifyAnimate[key];
 			});
 
-			// Init Shapes
-			var polygons = $element[0].getElementsByTagName('polygon');
-			var polys = [];
-			for(var i=0; i<polygons.length; i++){
-				// Chrome&Firefox&Opera works except IE 11: 
-				polys[i] = polygons[i].points;
-				// For IE:
-				//var d = polygons[i].getAttribute('points').split(' ');
-				//for(var q=0; q<d.length; q++){
-				//	var point = d[q].split(',')
-				//	polys[i] = {x:point[0], y:point[1]};
-				//}
-			}
-			
-			var el_paths = $element[0].getElementsByTagName('path');
-			var paths = [], path;
+			//** Init Shapes **//
 
-			for(var i=0; i<el_paths.length; i++){
-				paths[i] = el_paths[i].pathSegList;
-			}
 			
-			$scope.polys = polys;
-			$scope.paths = paths;
+			// Chrome&Firefox&Opera works except IE 11: 
+
+			// For IE:
+			//var d = polygons[i].getAttribute('points').split(' ');
+			//for(var q=0; q<d.length; q++){
+			//	var point = d[q].split(',')
+			//	polys[i] = {x:point[0], y:point[1]};
+			//}
+			
+			// Shape <polygon>
+			var polygons = $element[0].getElementsByTagName('polygon');			
+			for(var i=0, polys=[]; i<polygons.length; i++) polys[i] = polygons[i].points;
+			
+			// Shape <path>
+			var el_paths = $element[0].getElementsByTagName('path');
+			for(var i=0, paths=[]; i<el_paths.length; i++) paths[i] = el_paths[i].pathSegList;
+		
+			// Shape <circle>
+			var el_circle = $element[0].getElementsByTagName('circle');
+			for(var i=0, circles=[]; i<el_circle.length; i++) circles[i] = {'x':el_circle[i].cx,'y':el_circle[i].cy,'r':el_circle[i].r};
+
+			// Shape <rect> 
+			var el_rect = $element[0].getElementsByTagName('rect');
+			for(var i=0, rects=[]; i<el_rect.length; i++) rects[i] = {'x':el_rect[i].x, 'y':el_rect[i].y, 'width':el_rect[i].width, 'height':el_rect[i].height};
+			
+			// Shape <ellipse>
+			var el_ellipse = $element[0].getElementsByTagName('ellipse');
+			for(var i=0, ellipses=[]; i<el_ellipse.length; i++) ellipses[i] = {'x':el_ellipse[i].rx, 'y':el_ellipse[i].ry};
+
+			// Shape <line> 
+			var el_line = $element[0].getElementsByTagName('line');
+			for(var i=0, lines=[]; i<el_line.length; i++) lines[i] = {'x1':el_line[i].x1, 'y1':el_line[i].y1, 'x2':el_line[i].x2, 'y2':el_line[i].y2};
+			
+			// Shape <polyline>
+			var el_polyline = $element[0].getElementsByTagName('polyline');
+			for(var i=0, polylines=[]; i<el_polyline.length; i++) polylines[i] = el_polyline[i].points;
+						
+			angular.extend($scope, {'polys':polys, 'paths':paths, 'circles':circles, 'rects':rects, 'ellipses':ellipses, 'lines':lines, 'polylines':polylines});
 			$scope.theta = 0;
 			
 			var animate = function(){
-			
+
 				// polygons
-				// IE11 : F12 tools do not currently support extensive Scalable Vector Graphics (SVG) debugging, but several console messages are displayed to help debug SVG code.
+				// Problem IE11 : F12 tools do not currently support extensive Scalable Vector Graphics (SVG) debugging, but several console messages are displayed to help debug SVG code.
 				
-				for(var i = 0; i < $scope.polys.length; i++) {
-					$poly = $scope.polys[i];
-					for(var q=0; q < $poly.length; q++){ // .numberOfItems
-						$poly[q].y = $poly[q].y + Math.sin($scope.theta + scale($poly[q].x, 0, 500, 0, 2 * Math.PI)) * 0.5;
-					}
+				// Shape <polygon>
+				for(var i = 0, $poly; i < $scope.polys.length; i++) 
+					for(var q=0, $poly = $scope.polys[i], $item; q < $poly.numberOfItems; q++)
+						($item=$poly.getItem(q)).y = $item.y + Math.sin($scope.theta + scale($item.x, 0, 500, 0, 2 * Math.PI)) * 0.5;
+				
+				// Shape <path>
+				for(var i = 0, $path; i < $scope.paths.length; i++)
+					for(var q=0, $path = $scope.paths[i], $item; q<$path.numberOfItems; q++)
+						if(configTrianglifyAnimate.pathPassSymbols.indexOf(($item = $path.getItem(q)).pathSegTypeAsLetter) > -1)
+							$item.y = $item.y + Math.sin($scope.theta + scale($item.x, 0, 500, 0, 2 * Math.PI)) * 0.5;
+				
+				// Shape <circle>
+				for(var i = 0, $circle; i < $scope.circles.length; i++) 
+					($circle = $scope.circles[i]).y = $circle.y + Math.sin($scope.theta + scale($circle.x, 0, 500, 0, 2 * Math.PI)) * 0.5;
+				
+				// Shape <rect>
+				for(var i = 0, $rect; i < $scope.rects.length; i++) 
+					($rect = $scope.rects[i]).y = $rect.y + Math.sin($scope.theta + scale($rect.x, 0, 500, 0, 2 * Math.PI)) * 0.5;
+				
+				// Shape <ellipse>
+				for(var i = 0, $ellipse; i < $scope.ellipses.length; i++) 
+					($ellipse = $scope.ellipses[i]).y = $ellipse.y + Math.sin($scope.theta + scale($ellipse.x, 0, 500, 0, 2 * Math.PI)) * 0.5;
+					
+				// Shape <line>
+				for(var i = 0, $line; i < $scope.lines.length; i++) {
+					($line = $scope.lines[i]).y1 = $line.y1 + Math.sin($scope.theta + scale($line.x1, 0, 500, 0, 2 * Math.PI)) * 0.5;
+					$line.y2 = $line.y2 + Math.sin($scope.theta + scale($line.x2, 0, 500, 0, 2 * Math.PI)) * 0.5;
 				}
+					
+				// Shape <polyline>
+				for(var i = 0, $polyline; i < $scope.polylines.length; i++) 
+					for(var q=0, $polyline = $scope.polylines[i], $item; q < $polyline.numberOfItems; q++)
+						($item=$polyline.getItem(q)).y = $item.y + Math.sin($scope.theta + scale($item.x, 0, 500, 0, 2 * Math.PI)) * 0.5;
 				
-				// path
-				for(var i = 0; i < $scope.paths.length; i++) {
-					$path = $scope.paths[i];
-					for(var q=0; q<$path.length; q++){
-						if(configTrianglifyAnimate.pathPassSymbols.indexOf($path[q].pathSegTypeAsLetter) > -1){
-							$path[q].y = $path[q].y + Math.sin($scope.theta + scale($path[q].x, 0, 500, 0, 2 * Math.PI)) * 0.5;
-						}else{
-							//console.log($path[q].pathSegTypeAsLetter);
-						}
-					}
-				}	
-				
-				// todo: circle, rect, ellipse, line, polyline
 				$scope.theta += 0.04;
 			};
 			$scope.animate = $interval(function(){animate()}, 10/$scope.speed, false);
