@@ -52,11 +52,9 @@ thesa | 0.4 | number | -
 
 ## Todolist
 
-+ ~~add more support for other symbol/shapes : circle, rect, ellipse, line, polyline~~
-+ add support for attributes vector-x and vector-y
-+ add support for animating with using a easing
-+ ~~add browser support for IE 11 (bug: SVGPointList incorrectly based on contructor, cant get access to location of point)~~
-+ add more effects: shake ..
++ add support for difference vector (x,y)
++ add support for easing animation
++ add more effects: shake and more ..
 
 
 ## License
