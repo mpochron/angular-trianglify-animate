@@ -52,7 +52,6 @@ thesa | 0.4 | number | -
 
 ## Todolist
 
-+ add support for difference vector (x,y)
 + add support for easing animation
 + add more effects: shake and more ..
 
