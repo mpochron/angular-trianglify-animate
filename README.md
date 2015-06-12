@@ -42,13 +42,13 @@ The following are the default options set by the plugin Angular Trianglify Anima
 
 Option | Default Value | Type | Description
 --- | --- | --- | ---
-speed | 1 | number | -
-easing | 'linear' | string | -
-vector-x | 0 | number | -
-vector-y | 5 | number | -
-base-max | 0 | number | -
-base-min | 500 | number | -
-thesa | 0.4 | number | -
+speed | 1 | number | Animation speed
+easing | 'linear' | string | Easing animation tool (soon this feature will be added)
+vector-x | 0 | number | Vector space X
+vector-y | 5 | number | Vector space Y
+base-max | 0 | number | soon
+base-min | 500 | number | soon
+thesa | 0.4 | number | Polar angle (pi)
 
 ## Todolist
 
